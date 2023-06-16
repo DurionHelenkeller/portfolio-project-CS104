@@ -24,32 +24,6 @@ def convert_register_to_index(value):
 # Cache Flag - boolean representing whether or not the cache is to be used
 # Cache - instance of Cache object instantiated for CPU
 # Memory Bus - instance of Memory Bus object instantiated for CPU
-from cache import Cache
-from memory import Memory
-
-CPU_COUNTER_INIT_VALUE = 0
-NUMBER_OF_REGISTERS = 9
-
-ADD_INSTRUCTION_OPERATOR = "ADD"
-ADD_I_INSTRUCTION_OPERATOR = "ADDI"
-JUMP_INSTRUCTION_OPERATOR = "J"
-CACHE_INSTRUCTION_OPERATOR = "CACHE"
-
-CACHE_OF_VALUE = 0
-CACHE_ON_VALUE = 1
-CACHE_FLUSH_VALUE = 2
-
-
-# Helper function to convert register string to index. I.e. register labelled 'R2' should correspond to int index 2
-def convert_register_to_index(value):
-    return int(value[1:])
-
-# CPU class to implement the bulk of CPU Simulator requirements. Member properties include:
-# CPU Counter - Int representing the number of the instruction being parsed
-# Registers - List used to represent internal registers used by the CPU
-# Cache Flag - boolean representing whether or not the cache is to be used
-# Cache - instance of Cache object instantiated for CPU
-# Memory Bus - instance of Memory Bus object instantiated for CPU
 class CPU:
 
     def __init__(self):
@@ -114,24 +88,26 @@ class CPU:
             self.set_cache_flag(True)
         if value == CACHE_FLUSH_VALUE:
             self.flush_cache()
-# --- Add implementations for further instruction below ---
+            
+    # --- Add implementations for further instruction below ---
 
-# ------------------------------------------------------- #
+    # ------------------------------------------------------- #
 
-# Main parser method used to interpret instruction from input file.
-# Check value of operator and call subsequent helper function
-def parse_instruction(self, instruction):
-    instruction_parsed = instruction.split(",")
-    print("Reading instruction: " + instruction)
-    self.increment_cpu_counter()
-    if instruction_parsed[0] == ADD_INSTRUCTION_OPERATOR:
-        self.add_instruction(instruction_parsed[1], instruction_parsed[2], instruction_parsed[3])
-    if instruction_parsed[0] == ADD_I_INSTRUCTION_OPERATOR:
-        self.add_i_instruction(instruction_parsed[1], instruction_parse[2], instruction_parsed[3])
-    if instruction_parsed[0] == JUMP_INSTRUCTION_OPERATOR:
-        self.jump_instruction(instruction_parsed[1])
-    if instruction_parsed[0] == CACHE_INSTRUCTION_OPERATOR:
-        self.cache_instruction(instruction_parsed[1])
+    # Main parser method used to interpret instruction from input file.
+    # Check value of operator and call subsequent helper function
+  def parse_instruction(self, instruction):
+      instruction_parsed = instruction.split(",")
+      print("Reading instruction: " + instruction)
+      self.increment_cpu_counter()
+      if instruction_parsed[0] == ADD_INSTRUCTION_OPERATOR:
+          self.add_instruction(instruction_parsed[1], instruction_parsed[2], instruction_parsed[3])
+      if instruction_parsed[0] == ADD_I_INSTRUCTION_OPERATOR:
+          self.add_i_instruction(instruction_parsed[1], instruction_parse[2], instruction_parsed[3])
+      if instruction_parsed[0] == JUMP_INSTRUCTION_OPERATOR:
+          self.jump_instruction(instruction_parsed[1])
+      if instruction_parsed[0] == CACHE_INSTRUCTION_OPERATOR:
+          self.cache_instruction(instruction_parsed[1])
+    
     
 
 
