@@ -9,7 +9,7 @@ ADD_I_INSTRUCTION_OPERATOR = "ADDI"
 JUMP_INSTRUCTION_OPERATOR = "J"
 CACHE_INSTRUCTION_OPERATOR = "CACHE"
 
-CACHE_OF_VALUE = 0
+CACHE_OFF_VALUE = 0
 CACHE_ON_VALUE = 1
 CACHE_FLUSH_VALUE = 2
 
@@ -95,18 +95,21 @@ class CPU:
 
     # Main parser method used to interpret instruction from input file.
     # Check value of operator and call subsequent helper function
-  def parse_instruction(self, instruction):
-      instruction_parsed = instruction.split(",")
-      print("Reading instruction: " + instruction)
-      self.increment_cpu_counter()
-      if instruction_parsed[0] == ADD_INSTRUCTION_OPERATOR:
-          self.add_instruction(instruction_parsed[1], instruction_parsed[2], instruction_parsed[3])
-      if instruction_parsed[0] == ADD_I_INSTRUCTION_OPERATOR:
-          self.add_i_instruction(instruction_parsed[1], instruction_parse[2], instruction_parsed[3])
-      if instruction_parsed[0] == JUMP_INSTRUCTION_OPERATOR:
-          self.jump_instruction(instruction_parsed[1])
-      if instruction_parsed[0] == CACHE_INSTRUCTION_OPERATOR:
-          self.cache_instruction(instruction_parsed[1])
+    def parse_instruction(self, instruction):
+        instruction_parsed = instruction.split(",")
+        print("Reading instruction: " + instruction)
+        self.increment_cpu_counter()
+        if instruction_parsed[0] == ADD_INSTRUCTION_OPERATOR:
+            self.add_instruction(instruction_parsed[1], instruction_parsed[2], instruction_parsed[3])
+        if instruction_parsed[0] == ADD_I_INSTRUCTION_OPERATOR:
+            self.add_i_instruction(instruction_parsed[1], instruction_parsed[2], instruction_parsed[3])
+        if instruction_parsed[0] == JUMP_INSTRUCTION_OPERATOR:
+            self.jump_instruction(instruction_parsed[1])
+        if instruction_parsed[0] == CACHE_INSTRUCTION_OPERATOR:
+            self.cache_instruction(instruction_parsed[1])
+        
+
+    
     
     
 
