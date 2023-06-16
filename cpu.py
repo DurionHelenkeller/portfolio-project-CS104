@@ -46,11 +46,11 @@ class CPU:
         return self.cpu_counter
 
     def reset_registers(self):
-        for i in reange(len(self.registers)):
+        for i in range(len(self.registers)):
             self.registers[i] = 0
 
     def set_cache_flag(self, value):
-        self.cache.flush_cache()
+        self.cache_flag = value
 
     def flush_cache(self):
         self.cache.flush_cache()
