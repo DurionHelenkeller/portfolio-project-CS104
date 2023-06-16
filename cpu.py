@@ -27,11 +27,11 @@ def convert_register_to_index(value):
 class CPU:
 
     def __init__(self):
-      self.cpu_counter = CPU_COUNTER_INIT_VALUE
-      self.registers = [0] * NUMBER_OF_REGISTERS
-      self.cache_flag = False
-      self.cache = Cache()
-      self.memory_bus = Memory()
+        self.cpu_counter = CPU_COUNTER_INIT_VALUE
+        self.registers = [0] * NUMBER_OF_REGISTERS
+        self.cache_flag = False
+        self.cache = Cache()
+        self.memory_bus = Memory()
     
     def increment_cpu_counter(self):
         self.cpu_counter += 1
@@ -68,3 +68,27 @@ class CPU:
         self.memory_bus.write_memory_bus(address, value)
 
     # ---Sample implementations for ADD, ADDI, J, and Cache instructions --- 
+
+    def jump_instruction(self, target):
+        self.cpu_counter = int(target)
+
+    def add_instruction(self, destination, source, target):
+        self.registers[convert_register_to_index(destination)] = self.registers[convert_register_to_index(source)] + \
+        self.registers[convert_register_to_index(target)]
+
+    def add_i_instruction(self, destination, source, immediate):
+        self.registers[convert_register_to_index(destination)] = self.registers[convert_register_to_index(source)] + \
+                                                                  int(immediate)
+                                                    
+    # Method to implement cache instruction. 0 = OFF, 1 = ON, 2 = Flush Cache
+    def cache_instruction(self, value):
+        if value == CACHE_OFF_VALUE:
+            self.set_cache_flag(False)
+        if value == CACHE_ON_VALUE:
+            self.set_cache_flag(True)
+        if value == CACHE_FLUSH_VALUE:
+            self.flush_cache()
+
+
+    
+
