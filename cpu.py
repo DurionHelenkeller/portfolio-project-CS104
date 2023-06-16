@@ -31,4 +31,40 @@ class CPU:
       self.registers = [0] * NUMBER_OF_REGISTERS
       self.cache_flag = False
       self.cache = Cache()
-      self_memory_bus = Memory()
+      self.memory_bus = Memory()
+    
+    def increment_cpu_counter(self):
+        self.cpu_counter += 1
+
+    def reset_cpu_counter(self):
+        self.cpu_counter = CPU_COUNTER_INIT_VALUE
+
+    def set_cpu_counter(self, value):
+        self.cpu_counter = value
+
+    def get_cpu_counter(self):
+        return self.cpu_counter
+
+    def reset_registers(self):
+        for i in reange(len(self.registers)):
+            self.registers[i] = 0
+
+    def set_cache_flag(self, value):
+        self.cache.flush_cache()
+
+    def flush_cache(self):
+        self.cache.flush_cache()
+
+    def search_cache(self, address):
+        return self.cache.search_cache(address)
+
+    def write_cache(self, address, value):
+        self.cache.write_cache(address, value)
+
+    def search_memory_bus(self, address):
+        return self.memory_bus.search_memory_bus(address)
+
+    def write_memory_bus(self, address, value):
+        self.memory_bus.write_memory_bus(address, value)
+
+    # ---Sample implementations for ADD, ADDI, J, and Cache instructions --- 
